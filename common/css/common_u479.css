@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* responsive */
+@media screen and (max-width:479px) {
+
+/* ================ 全体共通 ================ */
+
+
+/* ================ ヘッダー（ナビ入り） ================ */
+header{
+	width: 100%;
+	padding: 10px 0 0;
+}
+header h1,
+nav li,
+header .pagetop{
+	float: none;
+	text-align: center;
+}
+header h1 span{
+	display: inline;
+}
+nav{
+	position: static;
+}
+nav li{
+	background: rgba(0,0,0,0.5);
+	border: 1px solid #000;
+	margin: 0;
+}
+nav li a{
+	width: 100%;
+	padding: 0;
+}
+header li a:hover,
+header .pagetop a{
+	border-radius: 0;
+	padding: 0;
+}
+
+
+/* ================ メインコンテンツ ================ */
+
+
+}

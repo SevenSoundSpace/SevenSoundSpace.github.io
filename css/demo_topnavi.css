@@ -1,0 +1,9 @@
+@charset "utf-8";
+#section2 ol>li,
+#section3 ol>li{
+	margin-bottom: 50px;
+}
+#section2 ol>li li,
+#section3 ol>li li{
+	margin-bottom: 5px;
+}

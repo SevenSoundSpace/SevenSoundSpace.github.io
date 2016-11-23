@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo(hideTopMenu)｜SevenSoundSpace</title>
+<link href="common/css/reset.css" rel="stylesheet" type="text/css">
+<link href="common/css/common.css" rel="stylesheet" type="text/css">
+<link href="common/css/common_u479.css" rel="stylesheet" type="text/css">
+<link href="css/demo_topnavi.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="common/js/html5shiv.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/jquery.smoothscroll.js"></script>
+
+<!-- 自作js -->
+<script type="text/javascript" src="common/js/hideTopMenu.js"></script>
+
+<!-- レスポンシブデザインのためのビューポート設定 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+<div id="all">
+	<header>
+		<!-- サイトロゴ -->
+		<h1><a href="index.html">Seven<span>Sound<span>Space</span></span></a></h1>
+		<!-- ページ内sectionナビ -->
+		<p class="pagetop"><a href="#all">▲</a></p>
+		<nav>
+			<ul>
+				<li><a href="#section1">考え方</a></li>
+				<li><a href="#section2">実際の記述</a></li>
+				<li><a href="#section3">ちょっと応用</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<!-- パンくずリスト -->
+		<ul id="topic_path">
+			<li><a href="index.html">HOME</a></li>
+			<li>Demo(hideTopMenu)</li>
+		</ul>
+		<!-- ページタイトル -->
+		<h2>スクロールと連動して消えたり現れたりするTopMenu</h2>
+
+		<section id="section1">
+			<h3><span>考え方</span></h3>
+			<div class="bg">
+				<ol>
+					<li>HTML：シャッ と隠したい要素をまるごと一つのタグで括る</li>
+					<li>CSS：position:fixed で固定配置</li>
+					<li>JavaScript（jQuery）：現在のスクロール位置を取得し、top の値を調整する</li>
+				</ol>
+			</div>
+		</section>
+		<section id="section2">
+			<h3><span>実際の記述</span></h3>
+			<div class="bg">
+				<ol>
+					<li>HTML
+						<p>一例として、&lt;header&gt; 要素をまるごと隠す対象とします。</p>
+						<p>ナビは各sectionへのページ内リンク。</p>
+						<pre><code>&lt;body&gt;
+  &lt;header&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#section1"&gt;section1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#section2"&gt;section2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#section3"&gt;section3&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;section id="section1"&gt;
+      ・・・
+    &lt;/section&gt;
+    &lt;section id="section2"&gt;
+      ・・・
+    &lt;/section&gt;
+    &lt;section id="section3"&gt;
+      ・・・
+    &lt;/section&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+					</li>
+					<li>CSS
+						<p>まずはザッとコードを紹介しちゃいます。</p>
+						<pre><code>header{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 10;
+  background: rgba(0,0,0,0.7);
+  transition: .3s;
+}
+nav{
+  overflow: hidden;
+}
+nav li{
+  float: left;
+  margin: 10px;
+}
+nav li a{
+  color: #fff;
+  text-decoration: none;
+}</code></pre>
+						<p>それでは小分けに解説していきますね。</p>
+						<ul>
+							<li>隠したい要素&lt;header&gt;をfixedで固定配置した上で
+								<pre><code>header{
+  position: fixed;
+  top: 0px;
+  left: 0px;</code></pre></li>
+							<li>横幅めいっぱいにメニュー領域を広げて
+								<pre><code>  width: 100%;</code></pre></li>
+							<li>他の要素の裏に隠れないようにz-indexで要素を前面に配置。
+								<pre><code>  z-index: 10;</code></pre></li>
+							<li>背景色には透過の黒をチョイス
+								<pre><code>  background: rgba(0,0,0,0.7);</code></pre></li>
+							<li>0.3秒で消えたり出たりするアニメーションをつけてみる。
+								<pre><code>  transition: .3s;
+}</code></pre></li>
+							<li>ナビはfloatで横並びに表示。
+								<pre><code>nav{
+  overflow: hidden;
+}
+nav li{
+  float: left;
+  margin: 10px;
+}</code></pre></li>
+							<li>リンクの文字は白の下線なし。
+								<pre><code>nav li a{
+  color: #fff;
+  text-decoration: none;
+}</code></pre></li>
+						</ul>
+						<p>これでひとまず、ページTopに固定でかぶさるナビが表示されました。</p>
+					</li>
+					<li>JavaScript（jQuery）
+						<p>最後に、jQueryで隠せるようにしましょう。</p>
+						<p>こちらもまずは全コードを先に紹介しますね。</p>
+						<pre><code>$(function(){
+  var hideElement = "header"; // 隠す対象の要素名
+  var hideHeight = $(hideElement).height(); // TopMenuの総高
+  var startPos = hideHeight; // 隠し始めるスクロール位置
+  var currentPos = 0; // 現在位置を保持するための変数
+
+  // スクロール時
+  $(window).scroll(function(){
+    if($(hideElement).css("position") == "fixed"){
+
+      // 下向きスクロール
+      if(currentPos < $(this).scrollTop()){
+        currentPos = $(this).scrollTop(); // まずは現在位置を更新
+        // 現在位置が、startPosを超えていたら隠す
+        if(startPos < currentPos){
+          if($(window).scrollTop() > 0){
+            $(hideElement).css("top", "-" + hideHeight + "px");
+          }
+        }
+
+      // スクロール値が前回と同じなら何もしない　※IE対策
+      }else if(currentPos == $(this).scrollTop()){
+
+      // 上向きスクロールでは、必ずメニューを表示
+      }else{
+        currentPos = $(this).scrollTop();
+        $(hideElement).css("top", 0 + "px");
+      }
+    }
+  });
+});</code></pre>
+						<p>（行コメント文と重複する部分もありますが...）順番に解説していきます。</p>
+						<ul>
+							<li>※前提としてjQueryを使用するので、事前にjQueryライブラリ読み込みを忘れずに。</li>
+							<li>まずは各種変数定義。 要素名が変わっても簡単に転用できるように変数化。
+								<pre><code>$(function(){
+  var hideElement = "header"; // 隠す対象の要素名</code></pre></li>
+							<li>隠したい要素自身の高さをCSSの値から取得し、保持しておく。
+								<pre><code>  var hideHeight = $(hideElement).height(); // TopMenuの総高</code></pre></li>
+							<li>スクロール位置のどの辺りから隠すかを調整する変数を定義しておきました。
+								<pre><code>  var startPos = hideHeight; // 隠し始めるスクロール位置</code></pre></li>
+							<li>スクロールする毎に前回位置と比較するための変数。
+								<pre><code>  var currentPos = 0; // 現在位置を保持するための変数</code></pre></li>
+							<li>それではここから実処理です。 スクロールが実行されたとき、かつ、指定した要素がfixedのときに処理します。
+								<pre><code>  // スクロール時
+  $(window).scroll(function(){
+    if($(hideElement).css("position") == "fixed"){</code></pre></li>
+							<li>まずは下向きにスクロールした（すなわちスクロール後の位置が直前の値より大きくなる）ときの処理。<br>
+CSSを書き換えて、topの位置をずらすことでウィンドウの外へ移動させます。
+								<pre><code>      // 下向きスクロール
+      if(currentPos < $(this).scrollTop()){
+        currentPos = $(this).scrollTop(); // まずは現在位置を更新
+        // 現在位置が、startPosを超えていたら隠す
+        if(startPos < currentPos){
+          if($(window).scrollTop() > 0){
+            $(hideElement).css("top", "-" + hideHeight + "px");
+          }
+        }</code></pre></li>
+							<li>今度はスクロール位置が直前と等しいときの処理です。<br>
+「スクロールする ＝ スクロール位置が変わる」と考えられるため、一見この分岐は通らないように思えます。<br>
+が、ブラウザによってスクロールが終わった後に "同じスクロール位置で"スクロールイベントが呼ばれることがあります。<br>
+そこで、この分岐では「スクロール位置が直前と等しければ "何もしない"」ようにしています。
+								<pre><code>      // スクロール値が前回と同じなら何もしない　※IE対策
+      }else if(currentPos == $(this).scrollTop()){</code></pre></li>
+							<li>そして最後の分岐、上向きスクロール時の処理です。<br>
+今回は上向きにスクロールした際に必ずメニューを再表示するようにしました。<br>
+再表示の仕組みは隠すときの逆、つまりtopの位置を元の0pxに戻しています。
+								<pre><code>      // 上向きスクロールでは、必ずメニューを表示
+      }else{
+        currentPos = $(this).scrollTop();
+        $(hideElement).css("top", 0 + "px");
+      }
+    }
+  });
+});</code></pre></li>
+						</ul>
+						<p>これが今回のTopMenuを消したり出したりするjQueryの使い方です。</p>
+						<p>今回はウィンドウ上部にくっついているメニューのため、上スクロールで戻す先は0pxでした。</p>
+						<p>が、この戻す位置や動かす方向を変えることで色々な動きを実現できるようになります！</p>
+					</li>
+				</ol>
+				<p>以上、少し長くなりましたがTopMenuをスクロールに合わせて動かす方法について分かったことのまとめです。</p>
+				<p>最後の方に書いた通り、これをベースに色々と応用できると思うので、サイトデザインに合わせた動きを考えてみるのも面白いのではないでしょうか。</p>
+			</div>
+		</section>
+		<section id="section3">
+			<h3><span>ちょっと応用</span></h3>
+			<div class="bg">
+				<p>jQueryのコードをいじってて思いついた小ネタをご紹介</p>
+				<ol>
+					<li>隠す要素にpadding/marginが記述されている場合
+						<p>上述のコードだとTopMenuのheight分のみtopを変更するため、もしpaddingやmarginが設定されていたらちょびっと隠しきれない半端な動作になってしまう。</p>
+						<p>そこで、padding/marginの値も取得して、隠す高さに足し込んでおくことで回避する。</p>
+						<ul>
+							<li>上記jQueryのコードを一部抜粋し、変更内容をbefore → afterにて。<br>
+まずは【before】
+								<pre><code>  var hideHeight = $(hideElement).height(); // TopMenuの総高</code></pre></li>
+							<li>それを変更した【after】
+								<pre><code>  var hideMarginTop = parseInt($(hideElement).css('margin-top'), 10); // margin-top取得
+  var hidePaddingTop = parseInt($(hideElement).css('padding-top'), 10); // padding-top取得
+  var hidePaddingBottom = parseInt($(hideElement).css('padding-bottom'), 10); // padding-bottom取得
+  var hideHeight = $(hideElement).height() + hideMarginTop + hidePaddingTop + hidePaddingBottom; // TopMenuの総高</code></pre>
+								<p>ここでparseIntという関数を使用しているが、これは１番目の引数に指定された文字列を整数に変換する関数。（文字列は先頭の文字から順に調べていき、数値でない文字が現れる直前までの文字列を整数に変換する）</p>
+								<p>２番目の引数は基数。 指定することで、2/8/10/16進数のどの解釈で整数化するか選択することができる。</p>
+							</li>
+						</ul>
+					</li>
+					<li>隠す要素の次にくる要素の開始位置をぴったり調整する
+						<p>TopMenuをfixedにするということは、そのままだと次にくる要素（今回はmain）がTopMenuの裏側に潜り込んでしまう。</p>
+						<p>そうなっても何とかなるようにTopMenuの背景色を透過させたが、やっぱり基本的は重ならないのが望ましいのではないか。</p>
+						<p>かといってCSSに固定値のpaddingを書き込んでしまうと、今度はTopMenuの内容を変えたときにまた調整しなくてはいけない...。</p>
+						<p>そこで！ せっかく取得・計算した「TopMenuの総高」があるのだから、それを使ってぴったり隙間を空けようじゃないか、というのが狙い。</p>
+						<ul>
+							<li>hideHeightを計算した後であればどこでも良いので、下記の処理を追加すればOK！
+								<pre><code> $("main, section").css("padding-top", hideHeight + "px"); // TopMenuの次要素の開始位置を調整する</code></pre>
+								<p>mainだけでなくsectionにも同じだけpadding-topを設定したのは、ページ内スクロールで各セクションへ飛んだ際にもTopMenuがかぶらないように配慮している。</p>
+							</li>
+						</ul>
+					</li>
+					<li>ウィンドウサイズを変えて高さが変わる場合
+						<p>本サイトもそうだが、ウィンドウサイズに応じて可変する要素は往々にして存在する。</p>
+						<p>そこで、ウィンドウサイズ変更のイベントが発生したら隠す要素の総高を再計算する仕組みを追加する。</p>
+						<ul>
+							<li>以下のコードを追加する。
+								<pre><code>  // レスポンシブデザインなどwindowリサイズ時にヘッダー高が変わる場合のケア
+  // リサイズ操作が終わったときだけ処理する
+  var timer = false;
+  $(window).resize(function(){
+    if(timer !== false){
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function(){
+      // 実処理
+      hideMarginTop = parseInt($(hideElement).css('margin-top'), 10); // margin-top再取得
+      hidePaddingTop = parseInt($(hideElement).css('padding-top'), 10); // padding-top再取得
+      hidePaddingBottom = parseInt($(hideElement).css('padding-bottom'), 10); // padding-bottom再取得
+      hideHeight = $(hideElement).height() + hideMarginTop + hidePaddingTop + hidePaddingBottom; // 総高を再計算
+      $("main, section").css("padding-top", hideHeight + "px");
+    }, 500);  // 処理タイミングはリサイズ終了の500ms後
+  });</code></pre>
+								<p>ウィンドウサイズ変更中、常に実処理を繰り返すのは無駄な負荷を生じやすいケースも考えられるため、今回はタイマーを使って「最後にウィンドウサイズを変更してから500ミリ秒の間にウィンドウサイズ変更がこなければ実処理が発動する」仕組みとした。</p>
+							</li>
+						</ul>
+					</li>
+				</ol>
+				<p>このように、ページの体裁によってケアする処理は多種多様に存在する。</p>
+				<p>（最適解かどうか推し量り難いが）それぞれの打開策を考える過程は難しいほどに面白い。</p>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<p><small>Copyright &copy;  2016 七音@7sounD All Rights Reserved.</small></p>
+		<p class="pagetop"><a href="#all">▲</a></p>
+	</footer>
+</div>
+</body>
+</html>

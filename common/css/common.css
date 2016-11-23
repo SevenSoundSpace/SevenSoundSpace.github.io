@@ -1,0 +1,239 @@
+@charset "utf-8";
+body{
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+/* ================ 全体共通 ================ */
+/* リンク表現 */
+a{
+	color: #fff;
+	font-size: 0.9em;
+}
+
+/* コード記述用 */
+/* <pre><code> </code></pre>で囲む */
+pre{
+	background: #fff;
+	border: 1px solid #000;
+	padding: 0 0.5em;
+	line-height: 1.5em;
+	margin: 0 2em;
+}
+
+
+/* ================ ヘッダー（ナビ入り） ================ */
+header{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+	overflow: hidden;
+	width: 96%;
+	padding: 10px 2%;
+	background: rgba(0,0,0,0.7);
+	transition: .3s;
+}
+
+/* タイトルロゴ */
+header h1,
+nav li {
+	float: left;
+}
+header h1{
+	font-weight: bold;
+	margin: 0.3em 0;
+	line-height: 0.7em;
+	font-size: 1.4em;
+}
+header h1 a{
+	text-decoration: none;
+}
+header h1 span{
+	display: block;
+	margin-left: 0.3em;
+}
+
+/* ページトップボタン */
+header .pagetop{
+	float: right;
+}
+header .pagetop a{
+	display: block;
+	padding: 5px 9px;
+	color: #fff;
+	background: rgba(0,0,0,0.3);
+	border-radius: 50%;
+}
+
+/* ナビ */
+nav{
+	text-align: center;
+	position: absolute;
+	right: 4%;
+	bottom: 10px;
+	overflow: hidden;
+}
+nav li a{
+	display: block;
+	padding: 0.3em 1em;
+	text-decoration: none;
+}
+header li a:hover{
+	border-radius: 50%;
+	background: rgba(255,255,255,0.2);
+}
+
+
+/* ================ メインコンテンツ ================ */
+main{
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+/* リンク表現 */
+main a{
+	background: rgba(0,0,0,0.7);
+	padding: 0 5px;
+}
+main a:hover{
+	background: rgba(0,0,0,0.3);
+}
+/* 外部リンク */
+main a[target="_blank"]{
+	padding-right: 17px;
+	background: rgba(0,0,0,0.7) url("../img/external-link-aqua03-Shapes4FREE.png") no-repeat 99.5% 25%;
+}
+main a[target="_blank"]:hover{
+	background: rgba(0,0,0,0.3) url("../img/external-link-red03-Shapes4FREE.png") no-repeat 99.5% 25%;
+}
+main a[target="_blank"]:after{
+	content: "　▶外部リンク";
+	font-size: 0.7em;
+	color: #aaa;
+}
+
+/* パンくずリスト */
+main #topic_path{
+	margin: 10px;
+	overflow: hidden;
+}
+main #topic_path li{
+	float: left;
+}
+main #topic_path li+li:before{
+	content: "｜";
+}
+main #topic_path li:last-child:after{
+	content: " ◀イマココ";
+}
+
+/* ページタイトル */
+/* テキストグラデーション予定 */
+main h2{
+	margin: 10px;
+	font-size: 1.4em;
+}
+
+/* ---------- セクション共通 ---------- */
+section{
+	padding-top: 100px;
+	margin-bottom: 150px;
+	line-height: 1.7em;
+	background: #777
+}
+
+/* セクションタイトル(h3)にボーダー */
+/* HTMLは<h3><span> </span></h3>で囲む */
+section h3{
+	position: relative;
+	text-align: center;
+	background-color: #fff;
+	padding: 5px 0;
+}
+section h3 span{
+	background-color: #fff;
+	display: inline-block;
+	z-index: 2;
+	padding: 0 0.5em;
+	position: relative;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+section h3:before{
+	position: absolute;
+	top: 40%;
+	content: "";
+	display: block;
+	width: 100%;
+	height: 2px;
+	background-color: #ccc;
+	z-index: 1;
+	background: linear-gradient(-45deg, transparent, #aaa 40%, #aaa 60%, transparent);
+}
+
+/* メインコンテンツの本文 */
+/* 背景色をつける時は .bg クラスのdivタグで括る */
+section .bg{
+	background: rgba(255,255,255,0.7);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.8) 100%);
+	padding: 10px 2% 100px;
+}
+section p,
+section ol{
+	margin: 10px 0;
+}
+section ol,
+section ul{
+	padding-left: 2em;
+}
+section ol{
+	list-style-type: decimal;
+}
+section ol>li{
+	font-weight: bold;
+	font-size: 1.1em;
+	margin-top: 1em;
+}
+section ol>li li{
+	font-size: 0.9em;
+}
+
+/* ---------- 各セクション個別 ---------- */
+#section1{
+	background: url(../img/index_background.jpg) no-repeat fixed;
+	background-size: cover;
+}
+#section2{
+	background: url(../img/index_background_2.jpg) no-repeat fixed;
+	background-size: cover;
+}
+#section3{
+	background: url(../img/index_background_3.jpg) no-repeat fixed;
+	background-size: cover;
+}
+
+
+/* ================ フッター ================ */
+footer{
+	padding: 10px 2%;
+	width: 96%;
+	background: #000;
+	color: #FFF;
+	overflow: hidden;
+}
+footer p{
+	float: left;
+}
+
+/* ページトップボタン */
+footer .pagetop{
+	float: right;
+}
+footer .pagetop a{
+	display: block;
+	padding: 5px 10px;
+	color: #fff;
+	background: #777;
+	border-radius: 50%;
+	font-size: 1.2em;
+}

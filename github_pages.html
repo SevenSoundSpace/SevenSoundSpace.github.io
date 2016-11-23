@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GitHub Pages｜SevenSoundSpace</title>
+<link href="common/css/reset.css" rel="stylesheet" type="text/css">
+<link href="common/css/common.css" rel="stylesheet" type="text/css">
+<link href="common/css/common_u479.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="common/js/html5shiv.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/jquery.smoothscroll.js"></script>
+
+<!-- 自作js -->
+<script type="text/javascript" src="common/js/hideTopMenu.js"></script>
+
+<!-- レスポンシブデザインのためのビューポート設定 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+
+<body>
+<div id="all">
+	<header>
+		<!-- サイトロゴ -->
+		<h1><a href="index.html">Seven<span>Sound<span>Space</span></span></a></h1>
+		<!-- ページ内sectionナビ -->
+		<p class="pagetop"><a href="#all">▲</a></p>
+		<nav>
+			<ul>
+				<li><a href="#section1">初回処理</a></li>
+				<li><a href="#section2">更新処理</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<!-- パンくずリスト -->
+		<ul id="topic_path">
+			<li><a href="index.html">HOME</a></li>
+			<li>GitHub Pages</li>
+		</ul>
+		<!-- ページタイトル -->
+		<h2>GitHubで簡単Webページ公開</h2>
+		<p>GitHubでHTMLドキュメントのバージョン管理をしようと思ったら、ページ公開すら簡単にできると聞いて触ってみる</p>
+
+		<section id="section1">
+			<h3><span>初回処理</span></h3>
+			<div class="bg">
+				<ol>
+					<li>GitHubサイトでリポジトリ作成。 Name→ <strong>'オーナー名'.github.io</strong> このネーミングルールがミソ</li>
+					<li>ローカルにClone。 Quick setupの<strong>[Set up in Desktop]</strong>ボタンで楽ちん</li>
+					<li>Cloneしたフォルダ直下に<strong>index.html</strong>を作って置く</li>
+					<li>ここからはGitHubアプリで。 'オーナー名'.github.ioリポジトリを選ぶ</li>
+					<li>Changesの変更内容を見て変更するファイルをチェック。 Commitしたいファイルを選んでSummary書いてCommit。 これはローカルリポジトリ相手</li>
+					<li>Commitが終わったら右上の[Publish]で初回の公開処理。 これはリモートリポジトリ相手</li>
+					<li>https://'オーナー名'.github.io/ にアクセスすると表示される！ Sync中～直後は更新処理が走ってるらしく、少し時間を要する場合もある</li>
+				</ol>
+			</div>
+		</section>
+
+		<section id="section2">
+			<h3><span>更新処理</span></h3>
+			<div class="bg">
+				<p>※GitHubアプリ内で完結できる</p>
+				<ol>
+					<li>Changesを選択してCommitしたいファイルを選び、Summaryを書いてCommit</li>
+					<li>Commitが終わったら右上の[Sync]で更新処理</li>
+					<li>https://'オーナー名'.github.io/ にアクセスして確認</li>
+				</ol>
+				<p>以上の流れが<a href="https://pages.github.com/" target="_blank">公式</a>に。</p>
+				<p>ついでに。リポジトリ削除→ リポジトリ内Settingタブ選んで最下[Delete this repository]ボタンをﾎﾟﾁｰ</p>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<p><small>Copyright &copy;  2016 七音@7sounD All Rights Reserved.</small></p>
+		<p class="pagetop"><a href="#all">▲</a></p>
+	</footer>
+</div>
+</body>
+</html>

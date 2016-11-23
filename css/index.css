@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* ================ ヘッダー（ナビ入り） ================ */
+header h1{
+	font-size: 200%;
+}
+
+
+/* ================ メインコンテンツ ================ */
+section{
+	margin-bottom: 300px;
+}
+
+/* メインコンテンツの本文 */
+#section1 p{
+	text-align: center;
+	font-family: "ＭＳ Ｐ明朝", "MS PMincho", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif;
+	font-size: 1.2em;
+	padding: 10px;
+}
+#section1 p:last-child{
+	text-align: right;
+}
+
+
+
+/* responsive */
+@media screen and (max-width:479px) {
+
+#section1 span{
+	display: block;
+}
+
+}
