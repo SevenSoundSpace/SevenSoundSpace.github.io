@@ -19,6 +19,10 @@ pre{
 	line-height: 1.5em;
 	margin: 0 2em;
 }
+/* 全体背景のグラデーション */
+body{
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(0,0,0,1) 100%);
+}
 
 
 /* ================ ヘッダー（ナビ入り） ================ */
@@ -107,7 +111,7 @@ main a[target="_blank"]:hover{
 	background: rgba(0,0,0,0.3) url("../img/external-link-red03-Shapes4FREE.png") no-repeat 99.5% 25%;
 }
 main a[target="_blank"]:after{
-	content: "　▶外部リンク";
+	content: "▶外部リンク";
 	font-size: 0.7em;
 	color: #aaa;
 }
@@ -124,7 +128,7 @@ main #topic_path li+li:before{
 	content: "｜";
 }
 main #topic_path li:last-child:after{
-	content: " ◀イマココ";
+	content: "◀イマココ";
 }
 
 /* ページタイトル */
@@ -217,9 +221,10 @@ section ol>li li{
 footer{
 	padding: 10px 2%;
 	width: 96%;
-	background: #000;
+	background: #222;
 	color: #FFF;
 	overflow: hidden;
+	border-top: 2px solid #666;
 }
 footer p{
 	float: left;

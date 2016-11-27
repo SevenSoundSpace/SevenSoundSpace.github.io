@@ -28,9 +28,10 @@
 		<nav>
 			<ul>
 				<li><a href="#section1">Intro</a></li>
-				<li><a href="#section2">ToDo</a></li>
-				<li><a href="#section3">Resolved</a></li>
-				<li><a href="#section4">Reference</a></li>
+				<li><a href="#section2">Resolved</a></li>
+				<li><a href="#section3">ToDo</a></li>
+				<li><a href="#section4">Plan</a></li>
+				<li><a href="#section5">Reference</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -52,6 +53,37 @@
 		</section>
 
 		<section id="section2">
+			<h3><span>謎が解けたモノ</span></h3>
+			<div class="bg">
+				<ol>
+					<li>スクロールと連動して消えたり現れたりするTopMenu
+						<ul>
+							<li><a href="demo_topnavi.html">[jQuery]自作デモ＋解説ページ</a></li>
+						</ul>
+					</li>
+					<li>レスポンシブデザイン
+						<ul>
+							<li>HTML：header内にビューポートを設定する<br>
+								<pre><code>&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;</code></pre>
+							</li>
+							<li>CSS：ウィンドウ幅を基準にメディアクエリを記述する（例：480px未満で切り替え）<br>
+								<pre><code>@media screen and (max-width:479px) {
+/* ここで480px未満の時に上書くCSSを記述する */
+}</code></pre>
+							</li>
+							<li>このページでもヘッダーデザインやリンク表現、Introの文章構成など切り替えています！</li>
+						</ul>
+					</li>
+					<li>GitHubで簡単Webページ公開
+						<ul>
+							<li><a href="github_pages.html">手順解説ページ</a></li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<section id="section3">
 			<h3><span>知りたいコト</span></h3>
 			<div class="bg">
 				<ol>
@@ -89,45 +121,40 @@
 							<li><a href="http://10251.net/jquery-toc-without-plugins" target="_blank">jQueryで目次と「目次に戻る」を自動生成（プラグイン無し） | 10251</a></li>
 						</ul>
 					</li>
-					<li>bootstrapのアレコレ</li>
-					<li>各種CMSの流行り廃れ及び自由度</li>
 				</ol>
 				<p>※他にも面白そうなネタがあれば教えてください！</p>
 			</div>
 		</section>
 
-		<section id="section3">
-			<h3><span>謎が解けたモノ</span></h3>
+		<section id="section4">
+			<h3><span>今後の目論見</span></h3>
 			<div class="bg">
+				<p>CSS/JS周りの知識を中心に深耕していければな、と。</p>
 				<ol>
-					<li>スクロールと連動して消えたり現れたりするTopMenu
+					<li>bootstrap
 						<ul>
-							<li><a href="demo_topnavi.html">[jQuery]自作デモ＋解説ページ</a></li>
+							<li>ひとまず流し読み↓</li>
+							<li><a href="https://techacademy.jp/magazine/6270" target="_blank">デザイン知識がなくてもOK！Bootstrapの使い方【入門者向け】 | TechAcademyマガジン</a></li>
 						</ul>
 					</li>
-					<li>レスポンシブデザイン
+					<li>AngularJS
 						<ul>
-							<li>HTML：header内にビューポートを設定する<br>
-								<pre><code>&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;</code></pre>
-							</li>
-							<li>CSS：ウィンドウ幅を基準にメディアクエリを記述する（例：480px未満で切り替え）<br>
-								<pre><code>@media screen and (max-width:479px) {
-/* ここで480px未満の時に上書くCSSを記述する */
-}</code></pre>
-							</li>
-							<li>このページでもヘッダーデザインやリンク表現、Introの文章構成など切り替えています！</li>
+							<li>ひとまず流し読み↓</li>
+							<li><a href="http://udemy.benesse.co.jp/development/angularjs.html" target="_blank">AngularJS入門者必見！作りながら覚えて10分で理解｜Udemy メディア</a></li>
 						</ul>
 					</li>
-					<li>GitHubで簡単Webページ公開
+					<li>React
 						<ul>
-							<li><a href="github_pages.html">手順解説ページ</a></li>
+							<li>ひとまず流し読み↓</li>
+							<li><a href="https://html5experts.jp/hokaccha/13301/" target="_blank">今話題のReact.jsはどのようなWebアプリケーションに適しているか？ Introduction To React─ Frontrend Conference | HTML5Experts.jp</a></li>
 						</ul>
 					</li>
+					<li>各種CMSの流行り廃れ及び自由度</li>
 				</ol>
 			</div>
 		</section>
 
-		<section id="section4">
+		<section id="section5">
 			<h3><span>よく参考にするトコロ</span></h3>
 			<div class="bg">
 				<ol>
@@ -136,13 +163,22 @@
 							<li>JavaScriptの静的解析。 記述エラーを探したいときなど</li>
 						</ul>
 					</li>
+					<li><a href="http://codepen.io/" target="_blank">CodePen - Front End Developer Playground &amp; Code Editor in the Browser</a>
+						<ul>
+							<li>自作HTML/CSS/JSを簡易にデモ化、公開、共有できる遊び場</li>
+							<li>ページ内にもこんな風に貼れる
+								<p data-height="265" data-theme-id="light" data-slug-hash="vyZVNx" data-default-tab="js,result" data-user="SevenSound" data-embed-version="2" data-pen-title="hideTopMenu" class="codepen">See the Pen <a href="http://codepen.io/SevenSound/pen/vyZVNx/">hideTopMenu</a> by SevenSound (<a href="http://codepen.io/SevenSound">@SevenSound</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+								<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+							</li>
+						</ul>
+					</li>
 				</ol>
 			</div>
 		</section>
 	</main>
 
 	<footer>
-		<p><small>Copyright &copy;  2016 七音@7sounD All Rights Reserved.</small></p>
+		<p><small>Copyright &copy; 2016 七音@7sounD All Rights Reserved.</small></p>
 		<p class="pagetop"><a href="#all">▲</a></p>
 	</footer>
 </div>
