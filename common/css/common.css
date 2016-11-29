@@ -129,6 +129,8 @@ main #topic_path li+li:before{
 }
 main #topic_path li:last-child:after{
 	content: "◀イマココ";
+	font-size: 0.8em;
+	color: #44F;
 }
 
 /* ページタイトル */
