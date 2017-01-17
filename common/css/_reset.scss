@@ -1,0 +1,30 @@
+@charset "utf-8";
+html, body, menu, section,
+p, div, span, img, a,
+h1, h2, h3, h4,
+ul, ol, dl, li, dt, dd,
+table, tr, th, td,
+pre, code{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font-weight: normal;
+	font-size: 100%;
+	box-sizing: border-box;
+	word-wrap: break-word;
+}
+pre{
+	white-space: pre-wrap;
+}
+header, footer, nav, section, main {
+	display: block;
+}
+ol, ul {
+	list-style-type: none;
+}
+/* clearfix */
+div:after, ul:after, ol:after {
+	content: "";
+	clear: both;
+}
